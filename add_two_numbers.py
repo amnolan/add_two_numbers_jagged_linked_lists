@@ -37,15 +37,20 @@ class Solution:
             # the column
             l1Val = l1.val if l1 else 0
             l2Val = l2.val if l2 else 0
+            
             # do the basic addition, including the carry value
             # from previous iteration
             columnSum = l1Val + l2Val + carry
-            # the carry is found by stripping out the tens
+            
+            # the carry is found by stripping out the tens, this is used in the NEXT iteration until carry == 0
             carry = columnSum // 10
+            
             # create a new node and set the node to a single digit
             newNode = ListNode(columnSum % 10)
-            # advance the list we are building (the return list)
+
+            # add the node to the linked list
             curr.next = newNode
+            # advance the list we are building (the return list)
             curr = newNode
             # advance the existing lists that came in as args
             l1 = l1.next if l1 else None
